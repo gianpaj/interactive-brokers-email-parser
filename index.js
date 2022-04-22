@@ -51,6 +51,8 @@ tradesPurchase = parseFloat(tradesPurchase.replace(/,/g, ""));
 // # Realized & Unrealized Performance Summary
 let realizedStocks = $AS("div > table > tbody > tr > td.indent:contains('Total Stocks') ~ :nth-of-type(7)").text();
 realizedStocks = parseFloat(realizedStocks.replace(/,/g, ""));
+let unrealizedStocks = $AS("div > table > tbody > tr > td.indent:contains('Total Stocks') ~ :nth-of-type(12)").text();
+unrealizedStocks = parseFloat(unrealizedStocks.replace(/,/g, ""));
 
 let numberOfTrades = $DR("#summaryDetailTable > tbody > tr.row-summary").length;
 let numberOfBuyTrades = $DR("#summaryDetailTable > tbody > tr.row-summary > td:contains('BUY')").length;
@@ -77,7 +79,8 @@ Trades (Purchase): ${tradesPurchase}`);
 console.log(`
 # Realized & Unrealized Performance Summary
 
-Realized Stocks: ${realizedStocks}`);
+Realized Stocks: ${realizedStocks}
+Unrealized Stocks: ${unrealizedStocks}`);
 
 let endingValueSum = startingValue + markToMarket + changeInDividendAccruals + commissions + otherFXTranslations;
 // round to 2 decimal places

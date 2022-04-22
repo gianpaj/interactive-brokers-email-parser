@@ -52,16 +52,6 @@ tradesPurchase = parseFloat(tradesPurchase.replace(/,/g, ""));
 let realizedStocks = $AS("div > table > tbody > tr > td.indent:contains('Total Stocks') ~ :nth-of-type(7)").text();
 realizedStocks = parseFloat(realizedStocks.replace(/,/g, ""));
 
-// TODO from the Activity Statement
-// Deposits & Withdrawals
-// Interest
-// Broker Fees
-// Change in Broker Fee Accruals
-// Change in Interest Accruals
-
-// TODO from the Daily Trade Report
-// (done) Realized & Unrealized Performance Summary
-
 let numberOfTrades = $DR("#summaryDetailTable > tbody > tr.row-summary").length;
 let numberOfBuyTrades = $DR("#summaryDetailTable > tbody > tr.row-summary > td:contains('BUY')").length;
 let numberOfSellTrades = $DR("#summaryDetailTable > tbody > tr.row-summary > td:contains('SELL')").length;

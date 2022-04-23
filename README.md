@@ -4,7 +4,7 @@ Retrieve the values from the HTML attachments in the emails from Interactive Bro
 
 ![image-20220422105135952](./img-email-ActivityStatement.png)
 
-![img-email-html-attachment-ActivityStatement](/Users/gpalumbo/personal/interactive-brokers-email-parser/img-email-html-attachment-ActivityStatement.png)
+![img-email-html-attachment-ActivityStatement](./img-email-html-attachment-ActivityStatement.png)
 
 e.g. `ActivityStatement.20220420.html`
 e.g. `DailyTradeReport.20220420.html`

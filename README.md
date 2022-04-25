@@ -25,6 +25,8 @@ Parsing DailyTradeReport.20220422.html...
 
 Starting Value: 800.42
 Mark-to-Market: -252.8
+Dividends: 81.0081
+Withholding Tax: -12.16
 Change in Dividend Accruals: -0.02
 Commissions: -5.25
 Other FX Translations: 0.37
@@ -62,6 +64,8 @@ Unrealized Stocks: -206.93
 ### Activity Statement email
 
 - [ ] Deposits & Withdrawals
+- [x] Dividends
+- [x] Withholding Tax
 - [ ] Interest
 - [ ] Broker Fees
 - [ ] Change in Broker Fee Accruals

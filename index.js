@@ -42,8 +42,14 @@ let changeInDividendAccruals = $AS(
 ).text();
 changeInDividendAccruals = parseFloat(changeInDividendAccruals.replace(/,/g, ""));
 
+let dividends = $AS('div > div > div > table > tbody > tr > td:contains("Dividends") + td').text();
+dividends = parseFloat(dividends.replace(/,/g, ""));
+
 let commissions = $AS('div > div > div > table > tbody > tr > td:contains("Commissions") + td').text();
 commissions = parseFloat(commissions.replace(/,/g, ""));
+
+let withholdingTax = $AS('div > div > div > table > tbody > tr > td:contains("Withholding Tax") + td').text();
+withholdingTax = parseFloat(withholdingTax.replace(/,/g, ""));
 
 let otherFXTranslations = $AS(
   'div > div > div > table > tbody > tr > td:contains("Other FX Translations") + td'
@@ -72,6 +78,8 @@ let numberOfSellTrades = $DR("#summaryDetailTable > tbody > tr.row-summary > td:
 console.log(`
 Starting Value: ${startingValue}
 Mark-to-Market: ${markToMarket}
+Dividends: ${dividends}
+Withholding Tax: ${withholdingTax}
 Change in Dividend Accruals: ${changeInDividendAccruals}
 Commissions: ${commissions}
 Other FX Translations: ${otherFXTranslations}
@@ -93,9 +101,16 @@ console.log(`
 Realized Stocks: ${realizedStocks}
 Unrealized Stocks: ${unrealizedStocks}`);
 
-let endingValueSum = startingValue + markToMarket + changeInDividendAccruals + commissions + otherFXTranslations;
+let endingValueSum =
+  startingValue +
+  markToMarket +
+  dividends +
+  withholdingTax +
+  changeInDividendAccruals +
+  commissions +
+  otherFXTranslations;
 // round to 2 decimal places
-endingValueSum = Math.round(endingValueSum * 100) / 100;
+endingValueSum = parseFloat(endingValueSum.toFixed(3).slice(0, -1));
 
 assert(endingValueSum === endingValue, `Starting and Ending Values should match: ${endingValueSum} == ${endingValue}`);
 assert(

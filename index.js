@@ -2,16 +2,27 @@ const cheerio = require("cheerio");
 const { assert } = require("console");
 const fs = require("fs");
 
+// list .html files in the current the directory
+const htmlFiles = fs.readdirSync("./").filter((file) => file.endsWith(".html"));
+
+// find the most recent file by date in file name
+const mostRecentFile = htmlFiles.reduce((a, b) => {
+  const aDate = new Date(a.split(".")[0]);
+  const bDate = new Date(b.split(".")[0]);
+  return aDate > bDate ? a : b;
+});
+const date = mostRecentFile.split(".")[1];
+
 // yesterday's date in "yearmonthday" format without "-"
-const yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, "");
+// const yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, "");
 
-const activityStatementFile = `ActivityStatement.${yesterday}.html`;
-console.log(`Scraping for ${activityStatementFile}...`);
+const activityStatement = `ActivityStatement.${date}.html`;
+const dailyTradeReport = `DailyTradeReport.${date}.html`;
+console.log(`Parsing ${activityStatement}...`);
+console.log(`Parsing ${dailyTradeReport}...`);
 
-const dailyTradeReport = `DailyTradeReport.${yesterday}.html`;
-
-// ActivityStatement
-const $AS = cheerio.load(fs.readFileSync(`./${activityStatementFile}`));
+// Activity Statement
+const $AS = cheerio.load(fs.readFileSync(`./${activityStatement}`));
 
 // Daily Trade Report
 const $DR = cheerio.load(fs.readFileSync(`./${dailyTradeReport}`));

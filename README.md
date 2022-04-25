@@ -20,7 +20,8 @@ TODO:
 
 ```text
 $ npm run start
-Scraping for ActivityStatement.20220420.html...
+Parsing ActivityStatement.20220422.html...
+Parsing DailyTradeReport.20220422.html...
 
 Starting Value: 800.42
 Mark-to-Market: -252.8
@@ -41,6 +42,7 @@ Trades (Purchase): -9399.6
 # Realized & Unrealized Performance Summary
 
 Realized Stocks: -107.48
+Unrealized Stocks: -206.93
 ```
 
 ## Todo

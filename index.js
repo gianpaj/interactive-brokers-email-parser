@@ -31,45 +31,45 @@ const $DR = cheerio.load(fs.readFileSync(`./${dailyTradeReport}`));
 let startingValue = $AS(
   "div > div.col-xs-12.col-sm-12.col-md-12.col-lg-4 > div > table > tbody > tr:nth-child(1) > td:nth-child(2)"
 ).text();
-startingValue = parseFloat(startingValue.replace(/,/g, ""));
+startingValue = parseFloat(startingValue.replace(/,/g, "")) || 0;
 
 // find element based on the td sibling
 let markToMarket = $AS('div > div > div > table > tbody > tr > td:contains("Mark-to-Market") + td').text();
-markToMarket = parseFloat(markToMarket.replace(/,/g, ""));
+markToMarket = parseFloat(markToMarket.replace(/,/g, "")) || 0;
 
 let changeInDividendAccruals = $AS(
   'div > div > div > table > tbody > tr > td:contains("Change in Dividend Accruals") + td'
 ).text();
-changeInDividendAccruals = parseFloat(changeInDividendAccruals.replace(/,/g, ""));
+changeInDividendAccruals = parseFloat(changeInDividendAccruals.replace(/,/g, "")) || 0;
 
 let dividends = $AS('div > div > div > table > tbody > tr > td:contains("Dividends") + td').text();
-dividends = parseFloat(dividends.replace(/,/g, ""));
+dividends = parseFloat(dividends.replace(/,/g, "")) || 0;
 
 let commissions = $AS('div > div > div > table > tbody > tr > td:contains("Commissions") + td').text();
-commissions = parseFloat(commissions.replace(/,/g, ""));
+commissions = parseFloat(commissions.replace(/,/g, "")) || 0;
 
 let withholdingTax = $AS('div > div > div > table > tbody > tr > td:contains("Withholding Tax") + td').text();
-withholdingTax = parseFloat(withholdingTax.replace(/,/g, ""));
+withholdingTax = parseFloat(withholdingTax.replace(/,/g, "")) || 0;
 
 let otherFXTranslations = $AS(
   'div > div > div > table > tbody > tr > td:contains("Other FX Translations") + td'
 ).text();
-otherFXTranslations = parseFloat(otherFXTranslations.replace(/,/g, ""));
+otherFXTranslations = parseFloat(otherFXTranslations.replace(/,/g, "")) || 0;
 
 let endingValue = $AS('div > div > div > table > tbody > tr > td:contains("Ending Value") + td').text();
-endingValue = parseFloat(endingValue.replace(/,/g, ""));
+endingValue = parseFloat(endingValue.replace(/,/g, "")) || 0;
 
 // # Cash Report
 let tradesSales = $AS('div > table > tbody > tr > td:contains("Trades (Sales)") + td').text();
-tradesSales = parseFloat(tradesSales.replace(/,/g, ""));
+tradesSales = parseFloat(tradesSales.replace(/,/g, "")) || 0;
 let tradesPurchase = $AS('div > table > tbody > tr > td:contains("Trades (Purchase)") + td').text();
-tradesPurchase = parseFloat(tradesPurchase.replace(/,/g, ""));
+tradesPurchase = parseFloat(tradesPurchase.replace(/,/g, "")) || 0;
 
 // # Realized & Unrealized Performance Summary
 let realizedStocks = $AS("div > table > tbody > tr > td.indent:contains('Total Stocks') ~ :nth-of-type(7)").text();
-realizedStocks = parseFloat(realizedStocks.replace(/,/g, ""));
+realizedStocks = parseFloat(realizedStocks.replace(/,/g, "")) || 0;
 let unrealizedStocks = $AS("div > table > tbody > tr > td.indent:contains('Total Stocks') ~ :nth-of-type(12)").text();
-unrealizedStocks = parseFloat(unrealizedStocks.replace(/,/g, ""));
+unrealizedStocks = parseFloat(unrealizedStocks.replace(/,/g, "")) || 0;
 
 let numberOfTrades = $DR("#summaryDetailTable > tbody > tr.row-summary").length;
 let numberOfBuyTrades = $DR("#summaryDetailTable > tbody > tr.row-summary > td:contains('BUY')").length;

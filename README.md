@@ -66,9 +66,9 @@ Unrealized Stocks: -206.93
 - [ ] Deposits & Withdrawals
 - [x] Dividends
 - [x] Withholding Tax
+- [x] Change in Broker Fee Accruals
 - [ ] Interest
 - [ ] Broker Fees
-- [ ] Change in Broker Fee Accruals
 - [ ] Change in Interest Accruals
 
 ### Daily Trade Report email

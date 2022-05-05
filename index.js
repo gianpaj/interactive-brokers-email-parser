@@ -42,6 +42,9 @@ let changeInDividendAccruals = $AS(
 ).text();
 changeInDividendAccruals = parseFloat(changeInDividendAccruals.replace(/,/g, "")) || 0;
 
+let brokerFees = $AS('div > div > div > table > tbody > tr > td:contains("Broker Fees") + td').text();
+brokerFees = parseFloat(brokerFees.replace(/,/g, "")) || 0;
+
 let changeInBrokerFeeAccruals = $AS(
   'div > div > div > table > tbody > tr > td:contains("Change in Broker Fee Accruals") + td'
 ).text();
@@ -86,6 +89,7 @@ Mark-to-Market: ${markToMarket}
 Dividends: ${dividends}
 Withholding Tax: ${withholdingTax}
 Change in Dividend Accruals: ${changeInDividendAccruals}
+Broker Fees: ${brokerFees}
 Change in Broker Fee Accruals: ${changeInBrokerFeeAccruals}
 Commissions: ${commissions}
 Other FX Translations: ${otherFXTranslations}
@@ -113,6 +117,7 @@ let endingValueSum =
   dividends +
   withholdingTax +
   changeInDividendAccruals +
+  brokerFees +
   changeInBrokerFeeAccruals +
   commissions +
   otherFXTranslations;
